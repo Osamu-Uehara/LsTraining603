@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LsTraining603" 
+    xmlns:viewModels="clr-namespace:LsTraining603.ViewModels;"
+    x:Class="LsTraining603.MainPage"
+    Padding="0,30,0,0">
+
+    <!--ViewModelのクラスを指定-->
+    <ContentPage.BindingContext>
+        <viewModels:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout 
+                Orientation="Horizontal"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <Button Text="行追加" Command="{Binding AddRowCommand}"/>
+                <Button Text="行クリア" Command="{Binding RowClearCommand}"/>
+            </StackLayout>
+            <ListView 
+                x:Name="ItemsListView" 
+                ItemsSource="{Binding Items}" 
+                VerticalOptions="FillAndExpand" 
+                HasUnevenRows="true" 
+                CachingStrategy="RecycleElement">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Text}" LineBreakMode="NoWrap" FontSize="16" />
+                                <Label Text="{Binding Description}" LineBreakMode="NoWrap" FontSize="13" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
